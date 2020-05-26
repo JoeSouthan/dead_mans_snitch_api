@@ -6,64 +6,122 @@ RSpec.describe DeadMansSnitchApi do
   end
 
   describe ".all_snitches" do
-    it "makes the request" do
+    subject(:all_snitches) { described_class.all_snitches }
+
+    it "returns a array of snitches" do
       VCR.use_cassette("all_snitches") do
-        described_class.all_snitches
+        expect(all_snitches).to be_kind_of Array
       end
     end
   end
 
   describe ".get" do
-    it "makes the request" do
+    subject(:get) { described_class.get(token: "76e58f5e75") }
+
+    it "returns the snitch" do
       VCR.use_cassette("get") do
-        described_class.get(token: "76e58f5e75")
+        expect(get.name).to eq("Test snitch")
       end
     end
   end
 
   describe ".create" do
-    it "makes the request" do
-      VCR.use_cassette("create") do
-        described_class.create(attributes: {
+    let(:create) { described_class.create(attributes: attributes) }
+
+    context "on success" do
+      let(:attributes) do
+        {
           name: "Some snitch",
           tags: %w[some tags],
           alert_type: "basic",
           interval: "hourly",
           alert_email: ["foo@example.com"],
           notes: "some notes",
-        })
+        }
+      end
+
+      it "creates the snitch" do
+        VCR.use_cassette("create") do
+          expect(create.token).to_not be nil
+        end
+      end
+    end
+
+    context "on failure" do
+      let(:attributes) do
+        {
+          name: "Failed snitch",
+        }
+      end
+
+      it "returns an error" do
+        VCR.use_cassette("create_failed") do
+          expect { create }.to raise_error(DeadMansSnitchApi::RequestError)
+        end
       end
     end
   end
 
   describe ".update" do
-    it "makes the request" do
-      VCR.use_cassette("update") do
-        described_class.update(token: "7706471376", attributes: { name: "New snitch name" })
+    subject(:update) do
+      described_class.update(token: "7706471376", attributes: attributes)
+    end
+
+    context "on success" do
+      let(:attributes) do
+        {
+          name: "New snitch name",
+        }
+      end
+
+      it "makes the request" do
+        VCR.use_cassette("update") do
+          expect(update.name).to eq("New snitch name")
+        end
+      end
+    end
+
+    context "on failure" do
+      let(:attributes) do
+        {
+          interval: "30_minute",
+        }
+      end
+
+      it "makes the request" do
+        VCR.use_cassette("update_failed") do
+          expect { update }.to raise_error(DeadMansSnitchApi::RequestError)
+        end
       end
     end
   end
 
   describe ".pause" do
-    it "makes the request" do
+    subject(:pause) { described_class.pause(token: "7706471376") }
+
+    it "returns true" do
       VCR.use_cassette("pause") do
-        described_class.pause(token: "7706471376")
+        expect(pause).to eq(true)
       end
     end
   end
 
   describe ".delete" do
-    it "makes the request" do
+    subject(:delete) { described_class.delete(token: "7706471376") }
+
+    it "returns true" do
       VCR.use_cassette("delete") do
-        described_class.delete(token: "7706471376")
+        expect(delete).to eq(true)
       end
     end
   end
 
   describe ".notify" do
+    subject(:notify) { described_class.notify(token: "c2d13fbfcf") }
+
     it "makes the request" do
       VCR.use_cassette("notify") do
-        described_class.notify(token: "c2d13fbfcf")
+        expect(notify).to eq(true)
       end
     end
   end

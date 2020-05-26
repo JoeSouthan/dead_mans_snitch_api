@@ -1,0 +1,72 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.deadmanssnitch.com/v1/snitches
+    body:
+      encoding: UTF-8
+      string: '{"name":"Failed snitch"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.7.0 x86_64) ruby/2.7.1p83
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '24'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.deadmanssnitch.com
+      Authorization:
+      - Basic api-key
+  response:
+    status:
+      code: 402
+      message: Payment Required
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Tue, 26 May 2020 23:00:10 GMT
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Location:
+      - https://deadmanssnitch.com/
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 31276e9f-134b-4730-8e08-7332d136467d
+      X-Runtime:
+      - '0.022529'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: '{"type":"plan_limit_reached","error":"We could not create your snitch
+        because you are at your plan limit of 1 snitch! Delete an unused snitch, or
+        head over to https://deadmanssnitch.com/ to upgrade your plan."}'
+    http_version: null
+  recorded_at: Tue, 26 May 2020 23:00:10 GMT
+recorded_with: VCR 5.1.0

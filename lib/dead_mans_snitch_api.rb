@@ -12,7 +12,9 @@ class DeadMansSnitchApi
 
   GEM_VERSION = "0.1.0"
   BASE_URI = Addressable::URI.parse("https://api.deadmanssnitch.com/v1")
-  SUCCESS_CODES = [200, 201, 204].freeze
+  SNITCH_URI = Addressable::Template.new("https://nosnch.in/{token}")
+  SUCCESS_CODES = [200, 201, 202, 204].freeze
+  BLANK_RESPONSE_CODES = [202, 204]
   DEFAULT_REQUEST_OPTIONS = {
     user: ENV.fetch("DMS_API_KEY", "1234"),
     headers: {
@@ -47,6 +49,10 @@ class DeadMansSnitchApi
 
   def self.delete(token:, override_request_options: {})
     new(**override_request_options).delete(token)
+  end
+
+  def self.notify(token:, override_request_options: {})
+    new(**override_request_options).notify(token)
   end
 
   def get(token)
@@ -135,6 +141,12 @@ class DeadMansSnitchApi
     true
   end
 
+  def notify(token)
+    handle_request do
+      RestClient.get(SNITCH_URI.expand(token: token).to_s)
+    end
+  end
+
   private
 
   attr_reader :request_options
@@ -142,9 +154,9 @@ class DeadMansSnitchApi
   def handle_request
     request = yield
 
-    if SUCCESS_CODES.include?(request.code) && request.code != 204
+    if SUCCESS_CODES.include?(request.code) && !BLANK_RESPONSE_CODES.include?(request.code)
       JSON.parse(request.body)
-    elsif request.code == 204
+    elsif BLANK_RESPONSE_CODES.include?(request.code)
       true
     else
       raise RequestError, request.body

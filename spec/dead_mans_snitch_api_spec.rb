@@ -59,4 +59,12 @@ RSpec.describe DeadMansSnitchApi do
       end
     end
   end
+
+  describe ".notify" do
+    it "makes the request" do
+      VCR.use_cassette("notify") do
+        described_class.notify(token: "c2d13fbfcf")
+      end
+    end
+  end
 end

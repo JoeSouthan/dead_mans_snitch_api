@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://nosnch.in/c2d13fbfcf
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.7.0 x86_64) ruby/2.7.1p83
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - nosnch.in
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Tue, 26 May 2020 22:20:36 GMT
+      Content-Type:
+      - text/plain; charset=utf-8
+      Content-Length:
+      - '16'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Cache-Control:
+      - no-store
+      X-Ratelimit-Limit:
+      - '1'
+      X-Ratelimit-Remaining:
+      - '0'
+      X-Ratelimit-Reset:
+      - '24'
+    body:
+      encoding: UTF-8
+      string: 'Got it, thanks!
+
+'
+    http_version: null
+  recorded_at: Tue, 26 May 2020 22:20:36 GMT
+recorded_with: VCR 5.1.0

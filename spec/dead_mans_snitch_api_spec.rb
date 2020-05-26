@@ -16,7 +16,7 @@ RSpec.describe DeadMansSnitchApi do
   describe ".get" do
     it "makes the request" do
       VCR.use_cassette("get") do
-        described_class.get(id: "76e58f5e75")
+        described_class.get(token: "76e58f5e75")
       end
     end
   end
@@ -32,6 +32,14 @@ RSpec.describe DeadMansSnitchApi do
           alert_email: ["foo@example.com"],
           notes: "some notes"
         })
+      end
+    end
+  end
+
+  describe ".update" do
+    it "makes the request" do
+      VCR.use_cassette("update") do
+        described_class.update(token: "7706471376", attributes: { name: "New snitch name" })
       end
     end
   end

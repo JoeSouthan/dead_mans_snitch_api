@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: patch
+    uri: https://api.deadmanssnitch.com/v1/snitches/7706471376
+    body:
+      encoding: UTF-8
+      string: '{"name":"New snitch name"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.7.0 x86_64) ruby/2.7.1p83
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '26'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.deadmanssnitch.com
+      Authorization:
+      - Basic api-key
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Tue, 26 May 2020 21:33:55 GMT
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"aef2feb31cb4a40c56ba8913ebf83087"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 8207b855-35f4-45a7-b34e-f00884e4f377
+      X-Runtime:
+      - '0.029932'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: '{"token":"7706471376","href":"/v1/snitches/7706471376","name":"New
+        snitch name","tags":[],"notes":null,"status":"pending","created_at":"2020-05-26T21:19:03.823Z","check_in_url":"https://nosnch.in/7706471376","checked_in_at":null,"type":{"interval":"hourly"},"interval":"hourly","alert_type":"basic","alert_email":[]}'
+    http_version: null
+  recorded_at: Tue, 26 May 2020 21:33:57 GMT
+recorded_with: VCR 5.1.0

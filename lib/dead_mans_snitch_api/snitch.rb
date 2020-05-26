@@ -28,24 +28,15 @@ class DeadMansSnitchApi
     end
 
     def persisted?
-      !!token
+      token
     end
 
-    def save
-      create unless persisted?
-      # request = DeadMansSnitchApi.update(attributes: params)
-
-      # attributes.merge!(request.to_h)
-
-      # self
+    def self.update(snitch)
+      DeadMansSnitchApi.update(token: snitch.token, attributes: snitch.params)
     end
 
-    def create
-      request = DeadMansSnitchApi.create(attributes: params)
-
-      attributes.merge!(request.to_h)
-
-      self
+    def self.create(snitch)
+      DeadMansSnitchApi.create(attributes: snitch.params)
     end
 
     def self.from_json(json)

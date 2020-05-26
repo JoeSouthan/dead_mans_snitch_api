@@ -29,21 +29,25 @@ class DeadMansSnitchApi
     new(**override_request_options).all_snitches
   end
 
-  def self.get(id:, override_request_options: {})
-    new(**override_request_options).get(id)
+  def self.get(token:, override_request_options: {})
+    new(**override_request_options).get(token)
   end
 
   def self.create(attributes: {}, override_request_options: {})
     new(**override_request_options).create(attributes)
   end
 
-  def get(id)
-    uri = Addressable::Template.new("#{BASE_URI}/snitches/{id}")
+  def self.update(token:, attributes: {}, override_request_options: {})
+    new(**override_request_options).update(token, attributes)
+  end
+
+  def get(token)
+    uri = Addressable::Template.new("#{BASE_URI}/snitches/{token}")
 
     request = handle_request do
       RestClient::Request.execute(
         method: :get,
-        url: uri.expand(id: id).to_s,
+        url: uri.expand(token: token).to_s,
         **request_options,
       )
     end
@@ -72,6 +76,21 @@ class DeadMansSnitchApi
       RestClient::Request.execute(
         method: :post,
         url: uri.expand({}).to_s,
+        payload: attributes.to_json,
+        **request_options,
+      )
+    end
+
+    DeadMansSnitchApi::Snitch.from_json(request)
+  end
+
+  def update(token, attributes = {})
+    uri = Addressable::Template.new("#{BASE_URI}/snitches/{token}")
+
+    request = handle_request do
+      RestClient::Request.execute(
+        method: :patch,
+        url: uri.expand(token: token).to_s,
         payload: attributes.to_json,
         **request_options,
       )

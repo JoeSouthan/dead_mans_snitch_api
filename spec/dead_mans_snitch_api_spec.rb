@@ -26,11 +26,11 @@ RSpec.describe DeadMansSnitchApi do
       VCR.use_cassette("create") do
         described_class.create(attributes: {
           name: "Some snitch",
-          tags: ["some", "tags"],
+          tags: %w[some tags],
           alert_type: "basic",
           interval: "hourly",
           alert_email: ["foo@example.com"],
-          notes: "some notes"
+          notes: "some notes",
         })
       end
     end

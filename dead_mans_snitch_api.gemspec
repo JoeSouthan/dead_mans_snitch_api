@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "lib/dead_mans_snitch_api"
-
 Gem::Specification.new do |spec|
   spec.name          = "dead_mans_snitch_api"
-  spec.version       = DeadMansSnitchApi::GEM_VERSION
+  spec.version       = "0.1.0"
   spec.authors       = ["Joseph Southan"]
   spec.email         = ["github@sthn.io"]
 
@@ -29,4 +27,12 @@ Gem::Specification.new do |spec|
   spec.add_dependency "addressable", "~> 2.7.0"
   spec.add_dependency "dry-struct", "~> 1.3"
   spec.add_dependency "rest-client", "~> 2.1.0"
+
+  spec.add_development_dependency "gc_ruboconfig", "~> 2.14.0"
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "rake", "~> 12.0"
+  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rubocop", "~> 0.84"
+  spec.add_development_dependency "vcr", "~> 5.1.0"
+  spec.add_development_dependency "webmock", "~> 3.8.3"
 end

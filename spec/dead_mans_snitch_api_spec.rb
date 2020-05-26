@@ -13,10 +13,25 @@ RSpec.describe DeadMansSnitchApi do
     end
   end
 
-  describe ".get_snitch" do
+  describe ".get" do
     it "makes the request" do
-      VCR.use_cassette("get_snitch") do
-        described_class.get_snitch(id: "76e58f5e75")
+      VCR.use_cassette("get") do
+        described_class.get(id: "76e58f5e75")
+      end
+    end
+  end
+
+  describe ".create" do
+    it "makes the request" do
+      VCR.use_cassette("create") do
+        described_class.create(attributes: {
+          name: "Some snitch",
+          tags: ["some", "tags"],
+          alert_type: "basic",
+          interval: "hourly",
+          alert_email: ["foo@example.com"],
+          notes: "some notes"
+        })
       end
     end
   end

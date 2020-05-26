@@ -1,44 +1,51 @@
 # frozen_string_literal: true
 
+require "dry-struct"
+
 class DeadMansSnitchApi
-  class Snitch
-    ALL_ATTRIBUTES = {
-      token: String,
-      href: String,
-      name: String,
-      tags: Array,
-      notes: String,
-      status: String,
-      created_at: String,
-      check_in_url: String,
-      checked_in_at: String,
-      type: Hash,
-      interval: String,
-      alert_type: String,
-      alert_email: Array,
-    }.freeze
+  class Snitch < Dry::Struct
+    transform_keys(&:to_sym)
 
-    MUTABLE_ATTRIBUTES = ALL_ATTRIBUTES.slice(
-      *(ALL_ATTRIBUTES.keys - %i[token href status created_at check_in_url]),
-    )
+    attribute :name, Dry.Types()::String
+    attribute :alert_type, Dry.Types()::String
+    attribute :interval, Dry.Types()::String
+    attribute? :tags, Dry.Types()::Array.optional
+    attribute? :alert_email, Dry.Types()::Array.optional
+    attribute? :notes, Dry.Types()::String.optional
 
-    def initialize(args = {})
-      ALL_ATTRIBUTES.each do |attr, type|
-        instance_variable_set(
-          "@#{attr}",
-          type.try_convert(args.fetch(attr.to_sym)),
-        )
-      end
+    attribute? :token, Dry.Types()::String.optional
+    attribute? :href, Dry.Types()::String.optional
+    attribute? :status, Dry.Types()::String.optional
+    attribute? :created_at, Dry.Types()::String.optional
+    attribute? :check_in_url, Dry.Types()::String.optional
+    attribute? :checked_in_at, Dry.Types()::String.optional
+    attribute? :type, Dry.Types()::Hash.optional
+
+    MUTABLE_ATTRIBUTES = %i[name tags notes interval alert_type alert_email].freeze
+
+    def params
+      to_h.slice(*MUTABLE_ATTRIBUTES)
     end
 
-    ALL_ATTRIBUTES.each do |attr, _type|
-      attr_reader attr
+    def persisted?
+      !!token
     end
 
-    MUTABLE_ATTRIBUTES.each do |attr, type|
-      define_method("#{attr}=") do |value|
-        instance_variable_set("@#{attr}", type.try_convert(value))
-      end
+    def save
+      create unless persisted?
+      # request = DeadMansSnitchApi.update(attributes: params)
+
+      # attributes.merge!(request.to_h)
+
+      # self
+    end
+
+    def create
+      request = DeadMansSnitchApi.create(attributes: params)
+
+      attributes.merge!(request.to_h)
+
+      self
     end
 
     def self.from_json(json)

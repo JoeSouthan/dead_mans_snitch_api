@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/dead_mans_snitch_api/version"
+require_relative "lib/dead_mans_snitch_api"
 
 Gem::Specification.new do |spec|
   spec.name          = "dead_mans_snitch_api"
-  spec.version       = DeadMansSnitchApi::VERSION
+  spec.version       = DeadMansSnitchApi::GEM_VERSION
   spec.authors       = ["Joseph Southan"]
   spec.email         = ["github@sthn.io"]
 

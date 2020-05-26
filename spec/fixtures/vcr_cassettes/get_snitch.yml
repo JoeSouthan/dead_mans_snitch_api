@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.deadmanssnitch.com/v1/snitches/76e58f5e75
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.7.0 x86_64) ruby/2.6.5p114
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.deadmanssnitch.com
+      Authorization:
+      - Basic api-key
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Tue, 26 May 2020 19:25:13 GMT
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"0db0aa61665dbbb9c650172f6d2532b9"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 04a88830-60f3-42f3-b748-9ff7afc2e26f
+      X-Runtime:
+      - '0.027626'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: '{"token":"76e58f5e75","href":"/v1/snitches/76e58f5e75","name":"Test
+        snitch","tags":["test"],"notes":"Some notes","status":"pending","created_at":"2020-05-26T19:24:44.916Z","check_in_url":"https://nosnch.in/76e58f5e75","checked_in_at":null,"type":{"interval":"daily"},"interval":"daily","alert_type":"basic","alert_email":["foobar@example.com"]}'
+    http_version: null
+  recorded_at: Tue, 26 May 2020 19:25:14 GMT
+recorded_with: VCR 5.1.0

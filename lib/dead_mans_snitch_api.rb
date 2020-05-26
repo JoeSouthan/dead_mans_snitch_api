@@ -41,6 +41,10 @@ class DeadMansSnitchApi
     new(**override_request_options).update(token, attributes)
   end
 
+  def self.pause(token:, override_request_options: {})
+    new(**override_request_options).pause(token)
+  end
+
   def get(token)
     uri = Addressable::Template.new("#{BASE_URI}/snitches/{token}")
 
@@ -99,6 +103,20 @@ class DeadMansSnitchApi
     DeadMansSnitchApi::Snitch.from_json(request)
   end
 
+  def pause(token)
+    uri = Addressable::Template.new("#{BASE_URI}/snitches/{token}/pause")
+
+    handle_request do
+      RestClient::Request.execute(
+        method: :post,
+        url: uri.expand(token: token).to_s,
+        **request_options,
+      )
+    end
+
+    true
+  end
+
   private
 
   attr_reader :request_options
@@ -106,8 +124,10 @@ class DeadMansSnitchApi
   def handle_request
     request = yield
 
-    if SUCCESS_CODES.include?(request.code)
+    if SUCCESS_CODES.include?(request.code) && request.code != 204
       JSON.parse(request.body)
+    elsif request.code == 204
+      true
     else
       raise RequestError, request.body
     end

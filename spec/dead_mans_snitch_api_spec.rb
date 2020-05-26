@@ -43,4 +43,12 @@ RSpec.describe DeadMansSnitchApi do
       end
     end
   end
+
+  describe ".pause" do
+    it "makes the request" do
+      VCR.use_cassette("pause") do
+        described_class.pause(token: "7706471376")
+      end
+    end
+  end
 end

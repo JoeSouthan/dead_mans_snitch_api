@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://api.deadmanssnitch.com/v1/snitches/7706471376
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.7.0 x86_64) ruby/2.7.1p83
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.deadmanssnitch.com
+      Authorization:
+      - Basic api-key
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Tue, 26 May 2020 21:43:28 GMT
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 7372a5ef-5783-40b6-b2d3-0eceaf28c914
+      X-Runtime:
+      - '0.061691'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: null
+  recorded_at: Tue, 26 May 2020 21:43:29 GMT
+recorded_with: VCR 5.1.0

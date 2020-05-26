@@ -45,6 +45,10 @@ class DeadMansSnitchApi
     new(**override_request_options).pause(token)
   end
 
+  def self.delete(token:, override_request_options: {})
+    new(**override_request_options).delete(token)
+  end
+
   def get(token)
     uri = Addressable::Template.new("#{BASE_URI}/snitches/{token}")
 
@@ -109,6 +113,20 @@ class DeadMansSnitchApi
     handle_request do
       RestClient::Request.execute(
         method: :post,
+        url: uri.expand(token: token).to_s,
+        **request_options,
+      )
+    end
+
+    true
+  end
+
+  def delete(token)
+    uri = Addressable::Template.new("#{BASE_URI}/snitches/{token}")
+
+    handle_request do
+      RestClient::Request.execute(
+        method: :delete,
         url: uri.expand(token: token).to_s,
         **request_options,
       )

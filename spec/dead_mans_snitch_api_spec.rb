@@ -51,4 +51,12 @@ RSpec.describe DeadMansSnitchApi do
       end
     end
   end
+
+  describe ".delete" do
+    it "makes the request" do
+      VCR.use_cassette("delete") do
+        described_class.delete(token: "7706471376")
+      end
+    end
+  end
 end

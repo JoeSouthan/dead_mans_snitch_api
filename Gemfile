@@ -6,6 +6,7 @@ source "https://rubygems.org"
 gemspec
 
 gem "gc_ruboconfig", "~> 2.14.0"
+gem "pry"
 gem "rake", "~> 12.0"
 gem "rspec", "~> 3.0"
 gem "rubocop", "~> 0.84"

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.deadmanssnitch.com/v1/snitches
+    uri: https://api.deadmanssnitch.com/v1/snitches/?tags=
     body:
       encoding: US-ASCII
       string: ''
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Tue, 26 May 2020 19:25:13 GMT
+      - Tue, 26 May 2020 19:34:32 GMT
       Connection:
       - keep-alive
       X-Frame-Options:
@@ -47,9 +47,9 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - c1e4aa04-c524-4796-85ac-262e3e082257
+      - 031ec702-a4c3-4a1b-bb7f-500463152bfa
       X-Runtime:
-      - '0.059520'
+      - '0.062492'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -63,5 +63,5 @@ http_interactions:
       string: '[{"token":"76e58f5e75","href":"/v1/snitches/76e58f5e75","name":"Test
         snitch","tags":["test"],"notes":"Some notes","status":"pending","created_at":"2020-05-26T19:24:44.916Z","check_in_url":"https://nosnch.in/76e58f5e75","checked_in_at":null,"type":{"interval":"daily"},"interval":"daily","alert_type":"basic","alert_email":["foobar@example.com"]}]'
     http_version: null
-  recorded_at: Tue, 26 May 2020 19:25:14 GMT
+  recorded_at: Tue, 26 May 2020 19:34:33 GMT
 recorded_with: VCR 5.1.0

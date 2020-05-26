@@ -45,13 +45,13 @@ class DeadMansSnitchApi
     DeadMansSnitchApi::Snitch.from_json(request)
   end
 
-  def all_snitches
-    uri = Addressable::Template.new("#{BASE_URI}/snitches")
+  def all_snitches(tags = [])
+    uri = Addressable::Template.new("#{BASE_URI}/snitches/{?tags}")
 
     request = handle_request do
       RestClient::Request.execute(
         method: :get,
-        url: uri.expand({}).to_s,
+        url: uri.expand(tags: tags).to_s,
         **request_options,
       )
     end
@@ -72,6 +72,6 @@ class DeadMansSnitchApi
       raise RequestError, request.body
     end
   rescue RestClient::ExceptionWithResponse => e
-    raise RequestError, response.body
+    raise RequestError, "Error: #{e} | Response: #{response.body}"
   end
 end

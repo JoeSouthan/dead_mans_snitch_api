@@ -3,18 +3,22 @@
 require "rest-client"
 require "addressable/uri"
 require "addressable/template"
+require "dry-configurable"
 require "json"
 
 require_relative "dead_mans_snitch_api/snitch"
 
 class DeadMansSnitchApi
   class RequestError < StandardError; end
-
+  extend Dry::Configurable
   GEM_VERSION = "0.1.0"
   BASE_URI = Addressable::URI.parse("https://api.deadmanssnitch.com/v1")
   SNITCH_URI = Addressable::Template.new("https://nosnch.in/{token}")
+
+  setting :api_key
+
   DEFAULT_REQUEST_OPTIONS = {
-    user: ENV.fetch("DMS_API_KEY", "1234"),
+    user: DeadMansSnitchApi.config.api_key,
     headers: {
       content_type: "application/json",
       accept: "application/json",

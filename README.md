@@ -1,8 +1,6 @@
 # DeadMansSnitchApi
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dead_mans_snitch_api`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A wrapper around the API for [Dead Man's Snitch](https://deadmanssnitch.com/).
 
 ## Installation
 
@@ -22,7 +20,59 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+First, set your API key, found in the DMS dashboard under "Keys":
+
+```ruby
+DeadMansSnitchApi.config.api_key = "API_KEY"
+```
+
+### Create a snitch
+
+```ruby
+attributes = {
+  name: "Backup", # A string
+  alert_type: "basic", # either basic or smart
+  interval: "hourly", # One of 30_minutes, hourly, daily
+  tags: ["production", "backups"], # Optional: an array of tags
+  alert_email: ["foo@example.com"], # Optional: an array of emails to notify
+  notes: "This is important", # Optional: a string detailing the snitch
+}
+
+DeadMansSnitch.create(attributes: attributes) # => DeadMansSnitchApi::Snitch
+```
+
+### Update a snitch
+
+```ruby
+attributes = {
+  name: "Backup", # A string
+  alert_type: "basic", # either basic or smart
+  interval: "hourly", # One of 30_minutes, hourly, daily
+  tags: ["production", "backups"], # Optional: an array of tags
+  alert_email: ["foo@example.com"], # Optional: an array of emails to notify
+  notes: "This is important", # Optional: a string detailing the snitch
+}
+
+DeadMansSnitch.update(token: "123", attributes: attributes) # => DeadMansSnitchApi::Snitch
+```
+
+### Pause a snitch
+
+```ruby
+DeadMansSnitch.pause(token: "123") # true
+```
+
+### Delete a snitch
+
+```ruby
+DeadMansSnitch.delete(token: "123") # true
+```
+
+### Notify DMS
+
+```ruby
+DeadMansSnitch.notify(token: "123") # true
+```
 
 ## Development
 

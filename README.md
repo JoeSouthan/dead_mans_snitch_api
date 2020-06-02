@@ -26,6 +26,14 @@ First, set your API key, found in the DMS dashboard under "Keys":
 DeadMansSnitchApi.config.api_key = "API_KEY"
 ```
 
+### List all snitches
+
+Optionally pass an array of tags to filter by
+
+```ruby
+DeadMansSnitchApi.all_snitches(tags: ["some", "tags"]) # => Array<DeadMansSnitchApi::Snitch>
+```
+
 ### Create a snitch
 
 ```ruby

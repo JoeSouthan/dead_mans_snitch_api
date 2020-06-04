@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "configuration"
-
 class DeadMansSnitchApi
   class Api
     BASE_URI = Addressable::URI.parse("https://api.deadmanssnitch.com/v1")
     SNITCH_URI = Addressable::Template.new("https://nosnch.in/{token}")
 
     DEFAULT_REQUEST_OPTIONS = {
-      user: DeadMansSnitchApi::Configuration.config.api_key,
+      user: DeadMansSnitchApi.config.api_key,
       headers: {
         content_type: "application/json",
         accept: "application/json",

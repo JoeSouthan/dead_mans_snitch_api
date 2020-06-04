@@ -5,13 +5,17 @@ require "addressable/uri"
 require "addressable/template"
 require "dry-configurable"
 require "json"
-
-require_relative "dead_mans_snitch_api/api"
-require_relative "dead_mans_snitch_api/snitch"
+require "dry-configurable"
 
 class DeadMansSnitchApi
   class RequestError < StandardError; end
+  extend Dry::Configurable
   GEM_VERSION = "0.1.0"
+
+  autoload :Api, "dead_mans_snitch_api/api"
+  autoload :Snitch, "dead_mans_snitch_api/snitch"
+
+  setting :api_key
 
   def self.all_snitches(tags: [])
     DeadMansSnitchApi::Api.new.all_snitches(tags)

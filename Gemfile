@@ -12,5 +12,5 @@ group :test, :development do
   gem "rspec", "~> 3.0"
   gem "rubocop", "~> 1.56"
   gem "vcr", "~> 5.1.0"
-  gem "webmock", "~> 3.8.3"
+  gem "webmock", "~> 3.13.0"
 end

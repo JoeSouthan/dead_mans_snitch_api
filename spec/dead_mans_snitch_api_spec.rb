@@ -2,7 +2,7 @@
 
 RSpec.describe DeadMansSnitchApi do
   it "has a version number" do
-    expect(DeadMansSnitchApi::GEM_VERSION).to_not be nil
+    expect(DeadMansSnitchApi::GEM_VERSION).to_not be_nil
   end
 
   describe ".all_snitches" do
@@ -10,7 +10,7 @@ RSpec.describe DeadMansSnitchApi do
 
     it "returns a array of snitches" do
       VCR.use_cassette("all_snitches") do
-        expect(all_snitches).to be_kind_of Array
+        expect(all_snitches).to be_a Array
       end
     end
   end
@@ -42,7 +42,7 @@ RSpec.describe DeadMansSnitchApi do
 
       it "creates the snitch" do
         VCR.use_cassette("create") do
-          expect(create.token).to_not be nil
+          expect(create.token).to_not be_nil
         end
       end
     end

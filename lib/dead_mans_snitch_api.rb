@@ -5,7 +5,6 @@ require "addressable/uri"
 require "addressable/template"
 require "dry-configurable"
 require "json"
-require "dry-configurable"
 
 class DeadMansSnitchApi
   class RequestError < StandardError; end

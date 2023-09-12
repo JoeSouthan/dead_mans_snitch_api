@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "addressable", "~> 2.7.0"
-  spec.add_dependency "dry-configurable", "~> 0.11"
+  spec.add_dependency "dry-configurable", ">= 0.11", "< 2.0"
   spec.add_dependency "dry-struct", "~> 1.3"
   spec.add_dependency "rest-client", "~> 2.1.0"
 end

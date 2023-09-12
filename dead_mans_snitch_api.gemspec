@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "addressable", "~> 2.7.0"
+  spec.add_dependency "addressable", ">= 2.7", "< 2.9"
   spec.add_dependency "dry-configurable", "~> 0.11"
   spec.add_dependency "dry-struct", "~> 1.3"
   spec.add_dependency "rest-client", "~> 2.1.0"

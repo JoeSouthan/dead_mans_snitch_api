@@ -8,7 +8,7 @@ gemspec
 group :test, :development do
   gem "gc_ruboconfig", "~> 4.3"
   gem "pry"
-  gem "rake", "~> 12.0"
+  gem "rake", "~> 13.1"
   gem "rspec", "~> 3.0"
   gem "rubocop", "~> 1.56"
   gem "vcr", "~> 5.1.0"
